@@ -1,0 +1,70 @@
+.WelcomeCart {
+  margin: 20px;
+  .container {
+    border: 3px solid #12ce8f;
+    border-radius: 10px;
+    padding: 15px;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 20px;
+    overflow: hidden;
+
+    .cart {
+      position: relative;
+      .title {
+        font-weight: 600;
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+
+      .btn {
+        color: #12ce8f;
+        padding: 5px;
+      }
+
+      .morning-icon {
+        background-image: url("./../../../../../img/sun.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+        height: 50px;
+        width: 50px;
+      }
+
+      .day-icon {
+        background-image: url("./../../../../../img/day.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+        height: 50px;
+        width: 50px;
+      }
+
+      .evening-icon {
+        background-image: url("./../../../../../img/evening.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+        height: 50px;
+        width: 50px;
+      }
+
+      .night-icon {
+        background-image: url("./../../../../../img/night.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+        height: 50px;
+        width: 50px;
+      }
+    }
+  }
+}

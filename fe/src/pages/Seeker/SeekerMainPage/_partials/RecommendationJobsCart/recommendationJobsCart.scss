@@ -1,0 +1,76 @@
+.RecommendationJobsCart {
+  margin: 30px 15px 15px 15px;
+
+  .recommendation-title {
+    color: #12ce8f;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 20px;
+
+    .recomendation-list {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      margin-bottom: 30px;
+      justify-content: center;
+      align-items: center;
+
+      .title {
+        font-size: 13px;
+        margin-bottom: 5px;
+      }
+
+      .company {
+        font-weight: 600;
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      .company-logo {
+        width: 50px;
+      }
+
+      .published {
+        color: #12ce8f;
+        font-size: 12px;
+      }
+
+      .inside {
+        width: 220px;
+        margin-left: 10px;
+      }
+
+      .btn {
+        height: 30px;
+        width: 30px;
+        color: #ffffff;
+        background: #12ce8f;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cv-icon {
+        background-image: url("./../../../../../img/cv-3.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+        height: 50px;
+        width: 50px;
+      }
+    }
+  }
+}

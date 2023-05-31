@@ -1,0 +1,9 @@
+ {  
+  "development": {
+    "username": "mehmetdi_superadmin",
+    "password": "8y1Uz6=E@UMi",
+    "database": "mehmetdi_edu_app",
+    "host": "185.106.210.122",
+    "dialect": "mysql"
+  }
+}

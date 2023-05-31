@@ -1,0 +1,7 @@
+{
+  "name": "cvCreateApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

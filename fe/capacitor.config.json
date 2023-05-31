@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "cvCreateApp",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}

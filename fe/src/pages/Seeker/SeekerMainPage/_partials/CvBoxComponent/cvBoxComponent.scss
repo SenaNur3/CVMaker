@@ -1,0 +1,65 @@
+.CvBoxComponent {
+  margin: 20px;
+  .container {
+    border: 3px solid #12ce8f;
+    border-radius: 10px;
+    padding: 15px;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 20px;
+    overflow: hidden;
+
+    .isNoCv {
+      position: relative;
+      .title {
+        font-weight: 600;
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+
+      .btn {
+        color: #ffffff;
+        background: #12ce8f;
+        padding: 5px;
+        border-radius: 10px;
+        width: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cv-icon {
+        background-image: url("./../../../../../img/cv-3.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+        height: 50px;
+        width: 50px;
+      }
+
+      .cv-update-icon {
+        background-image: url("./../../../../../img/change.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+        height: 50px;
+        width: 50px;
+      }
+
+      .cv-no-icon {
+        background-image: url("./../../../../../img/magic-wand.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+        height: 50px;
+        width: 50px;
+      }
+    }
+  }
+}
