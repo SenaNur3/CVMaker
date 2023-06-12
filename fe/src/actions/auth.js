@@ -10,8 +10,8 @@ import {
 import AuthService from "../services/auth.service";
 import jwt_decode from "jwt-decode";
 
-export const register = (name, email, password, type) => (dispatch) => {
-  return AuthService.register(name, email, password, type).then(
+export const register = (name, surmame, lastPosition, email, password, type) => (dispatch) => {
+  return AuthService.register(name, surmame, lastPosition, email, password, type).then(
     (response) => {
       dispatch({
         type: REGISTER_SUCCESS,

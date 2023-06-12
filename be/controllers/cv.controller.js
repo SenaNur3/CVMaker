@@ -7,6 +7,7 @@ function save(req, res) {
     username: req.body.username,
     name: req.body.name,
     surname: req.body.surname,
+    lastPosition: req.body.lastPosition,
     email: req.body.email,
     adres: req.body.adres,
     phone: req.body.phone,
@@ -26,10 +27,11 @@ function save(req, res) {
   };
 
   const schema = {
-    photo:{ type: "string", optional: false, max: "100" },
+    photo:{ type: "string", optional: true, max: "100" },
     username: { type: "string", optional: false, max: "100" },
     name: { type: "string", optional: false, max: "100" },
     surname: { type: "string", optional: false, max: "100" },
+    lastPosition: { type: "string", optional: false, max: "300" },
     email: { type: "string", optional: false, max: "100" },
     adres: { type: "string", optional: true, max: "100" },
     phone: { type: "string", optional: true, max: "100" },
@@ -139,7 +141,7 @@ function update(req, res) {
 
   const schema = {    
     username: { type: "string", optional: false, max: "300" },
-    photo: { type: "string", optional: false, max: "300" },
+    photo: { type: "string", optional: true, max: "300" },
     name: { type: "string", optional: false, max: "100" },
     surname: { type: "string", optional: false, max: "100" },
     email: { type: "string", optional: false, max: "100" },

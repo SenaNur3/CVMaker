@@ -8,10 +8,8 @@ import { useSelector } from "react-redux";
 const RecommendationJobsCart: React.FC = () => {
   let serviceStates: any = useSelector((state: any) => state?.cv?.userCV);
 
-  const serviceGet = serviceStates?.workExperience && JSON.parse(serviceStates?.workExperience)
+  const titleJOB = serviceStates?.lastPosition 
 
-
-  const titleJOB = serviceGet?.[0]?.title;
   const [searchResult, setSearchResult] = useState<any>([]);
 
   const getGoogleService = async () => {

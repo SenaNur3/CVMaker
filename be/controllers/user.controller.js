@@ -15,6 +15,8 @@ function signUp(req, res) {
           bcryptjs.hash(req.body.password, salt, function (err, hash) {
             const user = {
               name: req.body.name,
+              surname: req.body.surname,
+              lastPosition: req.body.lastPosition,
               email: req.body.email,
               password: hash,
               type: req.body.type

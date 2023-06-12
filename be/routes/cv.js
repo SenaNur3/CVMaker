@@ -4,7 +4,7 @@ const checkAuthMiddleware = require('../middleware/check-auth');
 
 const router = express.Router();
 
-router.post("/", checkAuthMiddleware.checkAuth, cvController.save);
+router.post("/", cvController.save);
 router.get("/", cvController.index);
 router.get("/:username", cvController.show);
 router.post("/:username", checkAuthMiddleware.checkAuth, cvController.update);

@@ -8,6 +8,7 @@ import {
   IonInfiniteScrollContent,
   IonRippleEffect,
   IonImg,
+  IonAlert,
 } from "@ionic/react";
 
 import "./SeekerLogin.scss";
@@ -19,19 +20,22 @@ import { useState } from "react";
 const SeekerLogin: React.FC = () => {
   const history = useHistory();
   const dispatch: any = useDispatch();
-  const [email, setStateEmail] = useState<string>();
-  const [pass, setStatePass] = useState<string>();
+  const [email, setStateEmail] = useState<string>("");
+  const [pass, setStatePass] = useState<string>("");
   const [valid, setIsValid] = useState<boolean>();
   const [validEmail, setIsValidEmail] = useState<boolean>();
+  const [showAlert, setShowAlert] = useState(false);
 
   const validateEmail = (ev: Event) => {
     const value = (ev.target as HTMLInputElement).value;
 
     setIsValidEmail(undefined);
 
-    if (value === '') return;
+    if (value === "") return;
 
-    setStateEmail(value) !== null ? setIsValidEmail(true) : setIsValidEmail(false);
+    setStateEmail(value) !== null
+      ? setIsValidEmail(true)
+      : setIsValidEmail(false);
   };
 
   const validate = (ev: Event) => {
@@ -39,19 +43,22 @@ const SeekerLogin: React.FC = () => {
 
     setIsValid(undefined);
 
-    if (value === '') return;
+    if (value === "") return;
 
     setStatePass(value) !== null ? setIsValid(true) : setIsValid(false);
   };
 
-
   const loginHandle = () => {
-    dispatch(login(email, pass))
-      .then(() => {
-        history.push("/seekerMainPage");
-        //window.location.reload();
-      })
-      .catch(() => {});
+    if (email === "" || pass === "") {
+      setShowAlert(true);
+    } else {
+      dispatch(login(email, pass))
+        .then(() => {
+          history.push("/seekerMainPage");
+          //window.location.reload();
+        })
+        .catch(() => {});
+    }
   };
   return (
     <IonPage>
@@ -69,8 +76,9 @@ const SeekerLogin: React.FC = () => {
             <IonItem>
               <IonLabel position="floating">Email </IonLabel>
               <IonInput
+               class="input-item"
                 type="email"
-                onIonInput={(event : any) => validateEmail(event)}
+                onIonInput={(event: any) => validateEmail(event)}
               ></IonInput>
             </IonItem>
 
@@ -78,8 +86,9 @@ const SeekerLogin: React.FC = () => {
               <IonLabel position="floating">Şifre</IonLabel>
 
               <IonInput
+               class="input-item"
                 type="password"
-                onIonInput={(event : any) => validate(event)}
+                onIonInput={(event: any) => validate(event)}
               ></IonInput>
             </IonItem>
 
@@ -87,6 +96,14 @@ const SeekerLogin: React.FC = () => {
               <IonRippleEffect></IonRippleEffect>
             </div>
           </IonList>
+
+          <IonAlert
+            isOpen={showAlert}
+            onDidDismiss={() => setShowAlert(false)}
+            header="Bilgi"
+            message="Lütfen e-posta ve şifre giriniz."
+            buttons={["Tamam"]}
+          />
         </IonInfiniteScrollContent>
 
         <div className="button-container">

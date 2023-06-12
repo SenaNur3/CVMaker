@@ -12,6 +12,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { register } from "../../../../actions/auth";
+import axios from "axios";
 
 const SeekerRegister: React.FC = () => {
   const history = useHistory();
@@ -19,19 +20,34 @@ const SeekerRegister: React.FC = () => {
   const [email, setStateEmail] = useState<any>();
   const [pass, setStatePass] = useState<any>();
   const [name, setStateUsername] = useState<any>();
+  const [surname, setSurname] = useState<any>();
+  const [lastPosition, setLastPosition] = useState<any>();
 
   const handleRegister = () => {
     dispatch(
       register(
         name?.target?.value,
+        surname?.target?.value,
+        lastPosition?.target?.value,
         email?.target?.value,
         pass?.target?.value,
         2
       )
     )
       .then(() => {
-        history.push("/seekerLogin");
-        //window.location.reload();
+        let bodyParameters = {
+          name: name?.target?.value,
+          surname: surname?.target?.value,
+          email: email?.target?.value,
+          username: email?.target?.value,
+          lastPosition: lastPosition?.target?.value
+        };
+
+        return axios
+          .post("http://localhost:3000/cv", bodyParameters)
+          .then((response: any) => {
+            history.push("/seekerLogin");
+          });
       })
       .catch(() => {});
   };
@@ -50,7 +66,7 @@ const SeekerRegister: React.FC = () => {
             </div>
           </div>
           <IonList lines="full">
-            <IonItem>
+            <IonItem class="input-item">
               <IonLabel position="stacked" className="label">
                 İsim
               </IonLabel>
@@ -58,15 +74,32 @@ const SeekerRegister: React.FC = () => {
                 onIonInput={(event: any) => setStateUsername(event)}
               ></IonInput>
             </IonItem>
+            <IonItem class="input-item">
+              <IonLabel position="stacked" className="label">
+                Soyisim
+              </IonLabel>
+              <IonInput
+                onIonInput={(event: any) => setSurname(event)}
+              ></IonInput>
+            </IonItem>
 
-            <IonItem>
+            <IonItem class="input-item">
+              <IonLabel position="stacked" className="label">
+                Pozisyon
+              </IonLabel>
+              <IonInput
+                onIonInput={(event: any) => setLastPosition(event)}
+              ></IonInput>
+            </IonItem>
+
+            <IonItem class="input-item">
               <IonLabel position="floating">Email</IonLabel>
               <IonInput
                 onIonInput={(event: any) => setStateEmail(event)}
                 type="email"
               ></IonInput>
             </IonItem>
-            <IonItem>
+            <IonItem class="input-item">
               <IonLabel position="floating"> Şifre </IonLabel>
               <IonInput
                 type="password"
