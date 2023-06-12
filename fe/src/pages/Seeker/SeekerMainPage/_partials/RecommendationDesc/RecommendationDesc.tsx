@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 
 
@@ -10,10 +10,7 @@ import {
   IonContent,
   IonToolbar,
   IonTitle,
-  IonPage,
   IonItem,
-  IonLabel,
-  IonInput,
 } from '@ionic/react';
 import "./RecommendationDesc.scss";
 
@@ -26,6 +23,11 @@ const RecommendationDesc: React.FC = () => {
     'This modal example uses triggers to automatically open a modal when the button is clicked.'
   );
 
+  useEffect(() => {
+    generateText()
+  }, []);
+
+
   function confirm() {
     modal.current?.dismiss(input.current?.value, 'confirm');
   }
@@ -36,29 +38,84 @@ const RecommendationDesc: React.FC = () => {
     }
   }
 
-  const getResult = async () => {
-    const api_key = "";
-    const temperature = 0.5;
+  
+  const generateText = () => {
+    
+    var basliklar = [
+      "Sevgili Müşteri,",
+      "Sayın Bay/Bayan,",
+      "Merhaba,",
+      "Selam,",
+      "Değerli Üyemiz,"
+    ];
 
+    var aciklamalar = [
+      "Size bu mektubu yazmamızın sebebi,",
+      "Bu e-postayı size gönderme amacımız,",
+      "Sizi bu yazıyla bilgilendirmek istiyoruz,",
+      "Size önemli bir konuda bilgi vermek istiyoruz,",
+      "Yeni gelişmeleri sizinle paylaşmak istiyoruz,"
+    ];
+
+    var vurgular = [
+      "önemli bir duyuru yapmak",
+      "size bir teklif sunmak",
+      "sizi bilgilendirmek",
+      "sorununuzu çözmek",
+      "yeni bir ürün tanıtmak"
+    ];
+
+    var bitisler = [
+      "için bu mektubu yazıyoruz.",
+      "hakkında sizi bilgilendirmek istiyoruz.",
+      "sorununuzu çözmek için buradayız.",
+      "size özel bir teklif sunmak istiyoruz.",
+      "sizi bilgilendirmek istediğimiz bir konu var."
+    ];
+
+    var uzunOnYazi = "";
+    while (uzunOnYazi.length < 300) {
+      var randomBaslikIndex = Math.floor(Math.random() * basliklar.length);
+      var randomAciklamaIndex = Math.floor(Math.random() * aciklamalar.length);
+      var randomVurguIndex = Math.floor(Math.random() * vurgular.length);
+      var randomBitisIndex = Math.floor(Math.random() * bitisler.length);
+
+      var secilenBaslik = basliklar[randomBaslikIndex];
+      var secilenAciklama = aciklamalar[randomAciklamaIndex];
+      var secilenVurgu = vurgular[randomVurguIndex];
+      var secilenBitis = bitisler[randomBitisIndex];
+
+      var tempOnYazi = secilenBaslik + " " + secilenAciklama + " " + secilenVurgu + ". " + secilenBitis;
+      uzunOnYazi += tempOnYazi + " ";
+    }
     modal.current?.present()
-    await fetch("https://api.openai.com/v1/engines/curie/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        'Authorization': `Bearer ${api_key}`,
-      },
-      body: JSON.stringify({
-        prompt: "Javascript Soğukkanlı tecrübeli yazılım uzmanı önsöz",
-        temperature: temperature,
-        max_tokens: 150,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setRes(data.choices[0].text)
-        console.log(data.choices[0].text)
-      });
-  };
+    setMessage(uzunOnYazi.trim())
+
+}
+
+ // const getResult = async () => {
+ //   const api_key = "";
+ //   const temperature = 0.5;
+//
+ //   modal.current?.present()
+ //   await fetch("https://api.openai.com/v1/engines/curie/completions", {
+ //     method: "POST",
+ //     headers: {
+ //       "Content-Type": "application/json",
+ //       'Authorization': `Bearer ${api_key}`,
+ //     },
+ //     body: JSON.stringify({
+ //       prompt: "Javascript Soğukkanlı tecrübeli yazılım uzmanı önsöz",
+ //       temperature: temperature,
+ //       max_tokens: 150,
+ //     }),
+ //   })
+ //     .then((response) => response.json())
+ //     .then((data) => {
+ //       setRes(data.choices[0].text)
+ //       console.log(data.choices[0].text)
+ //     });
+ // };
 
   return (
     <>
@@ -66,7 +123,7 @@ const RecommendationDesc: React.FC = () => {
         <div className="container">
           <div className="isNoCv">
             <div className="title">GPT ile Ön Yazı Oluştur</div>
-            <div className="btn" onClick={getResult}>
+            <div className="btn" onClick={generateText}>
               Hemen Oluştur
             </div>
             <div className="cv-icon"></div>
@@ -90,9 +147,9 @@ const RecommendationDesc: React.FC = () => {
           </IonHeader>
           <IonContent className="ion-padding">
             <IonItem>
-              <IonContent>
-                Lorem ipsum dolar amet, Lorem ipsum dolar amet, Lorem ipsum dolar amet
-              </IonContent>
+              <p className="msg-gpt">
+                {message}
+              </p>
             </IonItem>
           </IonContent>
         </IonModal>
